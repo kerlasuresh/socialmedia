@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+    <style media="screen">
+      body{
+        background-color: #d9fcfb
+      }
+      small{
+        float:right
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'navbar.html' %}
+    <div class="messages">
+      {% if messages %}
+        {% for message in messages %}
+          <p class="alert alert-{{ message.tags }} text-center" >
+            {{ message }}
+          </p>
+          {% endfor %}
+      {% endif %}
+    </div>
+    <h1 class='text-center' style='color:#fc00c1'>Welcome To NTH socialmedia APP</h1>
+    <div class="container">
+      <div class="row">
+        {% for i in articledata %}
+        <div class="col-md-6 img-thumbnail mt-2" style='background-color:#fccc5b'>
+          <center><a href="{{ i.get_absolute_url }}">{{ i.title }}</a></center>
+          <b>Author : </b>{{ i.author|capfirst }}
+          <small>{{ i.created_date }}</small><br>
+          {{ i.body }}
+        </div>
+        {% empty %}
+        <h2 class="text-warning text-center">The Articles is not Available with :{{ request.GET.query }}</h2>
+        {% endfor %}
+      </div>
+    </div>
+    </div>
+    <br>
+    <div class="container-fluid">
+      <ul class="pagination justify-content-center">
+        {% if articledata.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page= {{ articledata.previous_page_number }}">&laquo; </a>
+          </li>
+        {% endif %}
+
+        {% for p in articledata.paginator.page_range %}
+          {% if articledata.number == p %}
+            <li class="page-item active">
+              <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+          {% if articledata.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page= {{ articledata.next_page_number }}"> &raquo;</a>
+            </li>
+          {% endif %}
+      </ul>
+
+    </div>
+    <center>
+<br><br>  <a href="article_create" class='btn btn-success'>Create Article</a>
+  </center>
+  </body>
+</html>

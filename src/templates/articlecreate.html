@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <style media="screen">
+    body{
+      background-color:#ffff4d
+    }
+  </style>
+  <body >
+    {% include 'navbar.html' %}
+    <h2 class='text-center text-primary'>Create Your Article Below...</h2>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <form method="POST">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <center>
+              <input type="submit" value="Submit" class="btn btn-outline-success">
+              <input type="reset" value="Clear" class='btn btn-outline-danger'>
+              </center>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

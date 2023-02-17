@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <style media="screen">
+    body{
+      background-color: #d272ed
+    }
+    h2{
+      color:#e6005c
+    }
+  </style>
+  <body>
+    {% include 'navbar.html' %}
+    <h2 class='text-center'>Article Detaile View</h2>
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-2 col-md-7">
+          <b>Title</b> : {{ articledata.title }}<br>
+          <b>Created By</b> : {{ articledata.author }}<br>
+          <b>Body</b> : {{ articledata.body }}
+        </div>
+      </div>
+    </div>
+    <div class="offset-md-2 col-md-6">
+    <br>  {% include 'likes.html' %}
+    </div>
+
+<br><br><center><a href="{% url 'article_list' %}" class="btn btn-warning">Home Page</a></center>
+  </body>
+</html>

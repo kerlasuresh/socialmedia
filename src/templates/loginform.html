@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    {% include 'cdnlines.html' %}
+  </head>
+  <style media="screen">
+    body{
+      background-color:#ff9966;
+    }
+  </style>
+  <body>
+      <h3 class="text-center text-primary">Log in to your account</h3>
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-3 col-md-6">
+          <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <br><h5 class='text-center'>please login here...!</h5>
+            <center>
+              <input type="submit" value="Login" class='btn btn-outline-success'>
+              <input type="reset" value="Clear" class='btn btn-outline-danger'><br><br>
+
+              <a href="{% url 'registerview' %}"><h6>If you don't have account please register here...!</h6></a>
+              <h5></h5>
+            </center>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>
